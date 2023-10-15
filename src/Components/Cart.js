@@ -37,7 +37,7 @@ let login = localStorage.getItem('login')
       .then((res) => setCart(res.data.cart))
       .catch((err) => console.log(err));
     }
-      },[login]);
+      });
 
 
   const removeProduct =()=>{
