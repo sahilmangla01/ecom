@@ -11,7 +11,7 @@ const Navbar = () => {
   const [cart, setCart] = useState([]);
   const [togle, setTogle] = useState(false);
   let log = localStorage.getItem("login");
-  let name = localStorage.getItem("user").toUpperCase();
+  let name = localStorage.getItem("user");
 
   const navi = useNavigate();
   const handleLogout = () => {
