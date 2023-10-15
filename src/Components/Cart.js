@@ -17,16 +17,17 @@ const Cart = () => {
  const[pid , setPid]= useState()
  
 
-  const token = localStorage.getItem("token");
-  const token1 = window.atob(token.split(".")[1]);
-  const jsonString = `${token1}`;
-  const obj = JSON.parse(jsonString);
-  const userId = obj._id;
+
 
   
 
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    const token1 = window.atob(token.split(".")[1]);
+    const jsonString = `${token1}`;
+    const obj = JSON.parse(jsonString);
+    const userId = obj._id;
   
     axios
       .post("https://ecommerceserver-tn9j.onrender.com/api/displayCart", { userId: userId })
@@ -36,6 +37,11 @@ const Cart = () => {
 
 
   const removeProduct =()=>{
+    const token = localStorage.getItem("token");
+    const token1 = window.atob(token.split(".")[1]);
+    const jsonString = `${token1}`;
+    const obj = JSON.parse(jsonString);
+    const userId = obj._id;
     
     axios.post('https://ecommerceserver-tn9j.onrender.com/api/closeProduct',{userId: userId, productId:pid})
     .then((res) => console.log(res.data))
@@ -45,6 +51,11 @@ const Cart = () => {
   }
 
   const setIncrease =()=>{
+    const token = localStorage.getItem("token");
+    const token1 = window.atob(token.split(".")[1]);
+    const jsonString = `${token1}`;
+    const obj = JSON.parse(jsonString);
+    const userId = obj._id;
    
     axios.post("https://ecommerceserver-tn9j.onrender.com/api/setIncrease",{userId: userId , productId:pid})
     .then((res) => console.log(res.data))
@@ -52,6 +63,11 @@ const Cart = () => {
   }
 
   const setDecrease =()=>{
+    const token = localStorage.getItem("token");
+    const token1 = window.atob(token.split(".")[1]);
+    const jsonString = `${token1}`;
+    const obj = JSON.parse(jsonString);
+    const userId = obj._id;
    
     axios.post("https://ecommerceserver-tn9j.onrender.com/api/setDecrease",{userId: userId , productId:pid})
     .then((res) => console.log(res.data))

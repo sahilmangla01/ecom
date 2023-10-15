@@ -24,13 +24,13 @@ const Navbar = () => {
     navi("/")
   };
 
-  const token = localStorage.getItem("token");
-  const token1 = window.atob(token.split(".")[1]);
-  const jsonString = `${token1}`;
-  const obj = JSON.parse(jsonString);
-  const userId = obj._id;
+ 
   useEffect(() => {
-  
+    const token = localStorage.getItem("token");
+    const token1 = window.atob(token.split(".")[1]);
+    const jsonString = `${token1}`;
+    const obj = JSON.parse(jsonString);
+    const userId = obj._id;
     axios
       .post("https://ecommerceserver-tn9j.onrender.com/api/displayCart", { userId: userId })
       .then((res) => setCart(res.data.cart))
