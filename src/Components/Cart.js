@@ -62,7 +62,7 @@ const Cart = () => {
 
   const map = cart && cart.map((item) => item.productId);
   const quantity = cart && cart.map((item) => item.quantity);
-  const stock = cart && cart.map((item) => item.stock);
+  
   
   const price = cart && cart.map((item) => item.price);
 

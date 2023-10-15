@@ -27,7 +27,7 @@ const CategoryPage = ({urlCategory }) => {
   
       useEffect(() => {
         getCategoryProducts(`${Api}/${urlCategory}`);
-      }, [urlCategory]);
+      }, []);
   
   
       if (isLoading) {

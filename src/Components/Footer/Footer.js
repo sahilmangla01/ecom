@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import {FaFacebookSquare , FaDiscord, FaInstagram, FaYoutube, FaTwitterSquare,FaMobile } from "react-icons/fa";
+import {FaFacebookSquare , FaInstagram, FaYoutube, FaTwitterSquare,FaMobile } from "react-icons/fa";
 import {BiSolidSend} from "react-icons/bi";
 
 
