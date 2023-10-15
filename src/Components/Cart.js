@@ -36,7 +36,7 @@ const Cart = () => {
       .then((res) => setCart(res.data.cart))
       .catch((err) => console.log(err));
     }
-  });
+  },[login]);
 
 
   const removeProduct =()=>{

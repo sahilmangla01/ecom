@@ -37,7 +37,7 @@ const Navbar = () => {
       .then((res) => setCart(res.data.cart))
       .catch((err) => console.log(err));
     }
-  });
+  },[login]);
 
   return (
     <Nav>

@@ -87,7 +87,7 @@ const Store = ({ children }) => {
     useEffect(()=>{
         dispatch({ type: "FILTERPRODUCTS" });
         
-    },[ state.filters], )
+    },[ state.filters] )
 
     useEffect(()=>{
         getProducts(Api);
