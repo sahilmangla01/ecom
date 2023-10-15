@@ -67,7 +67,7 @@ const Wrapper = styled.section`
     grid-template-rows: repeat(4, 1fr);
   }
 
-  @media (max-width: ${({ theme }) => theme.media.tab}) {
+  @media only screen and (max-width: ${({ theme }) => theme.media.tab}) {
     display: flex;
     flex-direction: column;
     order: 1;
@@ -86,7 +86,7 @@ const Wrapper = styled.section`
     .main-screen{
         img{
          max-width:60%;
-         
+         height:100%;
             margin-left:2rem;
         }
       }

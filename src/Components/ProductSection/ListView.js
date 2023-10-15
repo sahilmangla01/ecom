@@ -74,7 +74,7 @@ const ListView = ({products}) => {
           transform: scale(1.2);
         }
         img {
-          max-width: 90%;
+          width: 40%; 
           margin-top: 1.5rem;
           height: 20rem;
           transition: all 0.2s linear;
