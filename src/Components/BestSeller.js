@@ -114,7 +114,7 @@ const Wrapper = styled.section`
       transform: scale(1.2);
     }
     img{
-      width: 40%;
+      width: auto;
       margin-top: 1.5rem;
       height: 20rem;
       transition: all 0.2s linear;
