@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import { AppContext } from "../Context/ProductsContext";
 import styled from "styled-components";
@@ -8,24 +8,27 @@ import { TbTruckDelivery, TbReplace } from "react-icons/tb";
 import MyImage from "./MyImage";
 import Stars from "./Styles/Stars";
 import AddToCart from "./Styles/AddToCart";
+import axios from "axios";
 
 const Api = "https://ecommerceserver-tn9j.onrender.com/api/products";
 const SingleProduct = () => {
-  const { getSingleProduct, isSingleProductLoading, singleProduct } =
-    useContext(AppContext);
+  const {  isSingleProductLoading } = useContext(AppContext);
+  const [data,setData]=useState()
   const  id  = useParams().id;
 
   useEffect(() => {
-    getSingleProduct(`${Api}/${id}`);
-  }, [id,getSingleProduct]);
+    axios.get(`${Api}/${id}`)
+        .then(res=>setData(res.data))
+        .catch(err=>console.log(err))
+  }, [id]);
 
   if (isSingleProductLoading) {
     return <div>......SINGLE LOADING</div>;
   }
   return (
     <Wrapper>
-      {singleProduct &&
-        singleProduct.map((e) => {
+      {data &&
+        data.map((e) => {
           return (
             <div key={e.id}>
               <div className="navigation">

@@ -1,19 +1,21 @@
 
-import React ,{useContext, useEffect} from 'react'
+import React ,{useContext, useEffect, useState} from 'react'
 import styled from 'styled-components'
 import Sort from './ProductSection/Sort';
 import { AppContext } from '../Context/ProductsContext';
 import ProductList from './ProductSection/ProductList';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 
 
 
 const Api = "https://ecommerceserver-tn9j.onrender.com/api/category"
 const CategoryPage = ({urlCategory }) => {
+  const[data,setData]=useState([])
 
 
-    const { getCategoryProducts, isLoading, categoryProducts ,gridView } =
+    const {  isLoading ,gridView } =
     useContext(AppContext);
     
     const getUniqueData = (data, attr) => {
@@ -23,11 +25,13 @@ const CategoryPage = ({urlCategory }) => {
       newVal = [...new Set(newVal)]
       return newVal
     }
-    const companyData = getUniqueData(categoryProducts, "company");
+    const companyData = getUniqueData(data, "company");
   
       useEffect(() => {
-        getCategoryProducts(`${Api}/${urlCategory}`);
-      },[urlCategory,getCategoryProducts]);
+        axios.get(`${Api}/${urlCategory}`)
+        .then(res=>setData(res.data))
+        .catch(err=>console.log(err))
+      },[urlCategory]);
   
   
       if (isLoading) {
@@ -40,7 +44,7 @@ const CategoryPage = ({urlCategory }) => {
         
       <section className="product-view--sort">
         <div className="sort-filter">
-          <Sort products={categoryProducts} />
+          <Sort products={data} />
         </div>
 
         <div className='filter'> 
@@ -62,7 +66,7 @@ const CategoryPage = ({urlCategory }) => {
         </div>
 
         <div className="main-product">
-          <ProductList products = {categoryProducts} gridView={gridView}/>
+          <ProductList products = {data} gridView={gridView}/>
         </div>
       </section>
     </div>

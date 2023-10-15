@@ -7,7 +7,7 @@ import ProductList from './Components/ProductSection/ProductList'
 import styled from 'styled-components'
 import { Button } from './Components/Styles/Button'
 
-const Api = "http://localhost:4000/api/company"
+const Api = "https://ecommerceserver-tn9j.onrender.com/api/company"
 const SubCategoryContent = () => {
 
    const {gridView}= useContext(AppContext)
