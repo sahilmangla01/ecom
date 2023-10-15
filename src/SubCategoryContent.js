@@ -20,7 +20,7 @@ const SubCategoryContent = () => {
         axios.get(`${Api}/${company}`)
         .then(res=> res.data)
         .then((e)=>setData(e))
-    },[])
+    })
   return (
     <Wrapper className='container'>
         <Sort products={data}/>
