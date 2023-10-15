@@ -24,9 +24,10 @@ const Navbar = () => {
     navi("/")
   };
 
- 
+ const login = localStorage.getItem('login')
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    if(login){
+      const token = localStorage.getItem("token");
     const token1 = window.atob(token.split(".")[1]);
     const jsonString = `${token1}`;
     const obj = JSON.parse(jsonString);
@@ -35,6 +36,7 @@ const Navbar = () => {
       .post("https://ecommerceserver-tn9j.onrender.com/api/displayCart", { userId: userId })
       .then((res) => setCart(res.data.cart))
       .catch((err) => console.log(err));
+    }
   });
 
   return (
