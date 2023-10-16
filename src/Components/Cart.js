@@ -235,8 +235,8 @@ const Wrapper = styled.section`
         margin-left:6rem;
       }
       img {
-        max-width: 10vw;
-        max-height: 20vh;
+        width: auto;
+        height: 20vh;
       }
       div {
         width: 20vw;
@@ -314,6 +314,10 @@ const Wrapper = styled.section`
       }
       .product{
         width:45vw;
+        img{
+          max-width:60%;
+          height:20vh;
+        }
        .name{
         font-size:3rem;
        }
@@ -334,6 +338,13 @@ const Wrapper = styled.section`
     .main{
       width:90vw;
       align-items:baseline;
+      .product{
+        width:60vw;
+        img{
+          max-width:90%;
+          height:20vh;
+        }
+      }
     }
     .amount{
       width:28vw;
