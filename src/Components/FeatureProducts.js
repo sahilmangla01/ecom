@@ -6,7 +6,7 @@ import FormatPrice from "./FormatPrice/FormatPrice";
 
 const FeatureProducts = () => {
   const { isLoading, featured } = useContext(AppContext);
-  let log = localStorage.getItem('token')
+  
   if (isLoading) {
     return <div>........LOADING</div>;
   }
@@ -19,7 +19,7 @@ const FeatureProducts = () => {
           {featured.map((current) => {
             
             return (
-              <NavLink to={log?`/singleproduct/${current.id}`:'/login' } key={current.id}>
+              <NavLink to={`/singleproduct/${current.id}`} key={current.id}>
                 <div className="card">
                   <figure>
                     <img src={current.image[0].img} alt={current.name} />

@@ -4,14 +4,16 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import FormatPrice from "./FormatPrice/FormatPrice";
 
+
 const BestSeller = () => {
   const { isLoading, products} = useContext(AppContext);
   
-let log = localStorage.getItem('token')
+
   if (isLoading) {
     return <div>........LOADING</div>;
   }
   return (
+    
     <Wrapper className="section">
       <div className="container">
         
@@ -20,7 +22,8 @@ let log = localStorage.getItem('token')
           {products.filter((e)=>e.best==="bestseller").map((current) => {
             
             return (
-              <NavLink to={log?`/singleproduct/${current.id}`:'/login' } key={current.id}>
+             
+              <NavLink to={`/singleproduct/${current.id}`}  key={current.id}>
                 <div className="card" >
                   <figure>
                     <img src={current.image[0].img} alt={current.name} />
@@ -37,6 +40,7 @@ let log = localStorage.getItem('token')
                   </div>
                 </div>
               </NavLink>
+              
             );
           })}
         </div>

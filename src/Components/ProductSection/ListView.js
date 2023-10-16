@@ -6,7 +6,7 @@ import {Button} from "../Styles/Button"
 
 
 const ListView = ({products}) => {
-  let log = localStorage.getItem('token')
+  
     return (
         <Wrapper className="section">
           <div className="container grid">
@@ -25,7 +25,7 @@ const ListView = ({products}) => {
                     </p>
                     <p>{description.slice(0, 90)}...</p>
     
-                    <NavLink to={log?`/singleproduct/${id}`:'/login' } className="btn-main">
+                    <NavLink to={`/singleproduct/${id}` } className="btn-main">
                       <Button className="btn">Read More</Button>
                     </NavLink>
                   </div>

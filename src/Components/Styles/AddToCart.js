@@ -3,24 +3,35 @@ import styled from 'styled-components';
 import {Button} from './Button'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer ,toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
+
+
+const login = localStorage.getItem('login')
 
 const AddToCart = ({stock , id, price}) => {
 
-  const token=localStorage.getItem("token")
+
+
+ 
+  const addToCart = ()=>{
+   if(login){
+    Navi('/cart')
+    const token=localStorage.getItem("token")
     const token1=window.atob(token.split(".")[1])
     const jsonString = `${token1}`;
     const obj = JSON.parse(jsonString);
     const userId = obj._id;
-   
-
-
-  const addToCart = ()=>{
-    Navi('/cart')
-    axios.post('https://ecommerceserver-tn9j.onrender.com/api/cart',{productId:id ,userId:userId ,quantity:1 ,stock:stock ,price:price } )
-    .then(res=>console.log(res.data))
-    .catch(err=>console.log(err))
-  } 
+    
+        axios.post('https://ecommerceserver-tn9j.onrender.com/api/cart',{productId:id ,userId:userId ,quantity:1 ,stock:stock ,price:price } )
+        .then(res=>console.log(res.data))
+        .catch(err=>console.log(err))
+      }
+        else{
+          toast("Please Login")
+    }}  
+  
 
 
     const Navi = useNavigate();
@@ -30,6 +41,7 @@ const AddToCart = ({stock , id, price}) => {
    
 
     <Button onClick={addToCart}>Add To Cart</Button>
+    <ToastContainer />
     
   </Wrapper>
   )

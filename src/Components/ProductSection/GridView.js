@@ -4,13 +4,13 @@ import { NavLink } from 'react-router-dom';
 import FormatPrice from '../FormatPrice/FormatPrice';
 
 const GridView = ({products}) => {
-  let log = localStorage.getItem('token')
+  
     return (
         <Wrapper className="section">
           <div className="contain grid grid-three">
             {products.map((current) => {
               return (
-                <NavLink to={log?`/singleproduct/${current.id}`:'/login' } key={current.id}>
+                <NavLink to={`/singleproduct/${current.id}` } key={current.id}>
                 <div className="card">
                   <figure>
                     <img src={current.image[0].img} alt={current.name} />
