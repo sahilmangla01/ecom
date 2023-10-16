@@ -57,8 +57,8 @@ const Wrapper = styled.section`
     place-items: center;
     
     img {
-      width:100%;
-      max-height:100%;
+      width:auto;
+      height:auto;
       margin-left:3rem;
     }
   }

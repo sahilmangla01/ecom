@@ -7,6 +7,9 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 const responsive = {
+
+    
+
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
@@ -27,8 +30,10 @@ const responsive = {
 };
 
 
-const FeatureProducts = () => {
-  const { isLoading, featured } = useContext(AppContext);
+const SimiliarProducts = ({category}) => {
+  const { isLoading, products} = useContext(AppContext);
+
+  const random = Math.floor(Math.random() * 10);
   
   if (isLoading) {
     return <div>........LOADING</div>;
@@ -37,11 +42,11 @@ const FeatureProducts = () => {
     <Wrapper className="section">
       <div className="container">
         <div className="intro-data">Check Now!</div>
-        <div className="heading">Our Featured Products</div>
+        <div className="heading">Similiar Products</div>
       
         {/* <div className="grid grid-three-column"> */}
           <Carousel responsive={responsive} autoPlay={true} infinite={true}>
-          {featured.map((current) => {
+          {products.filter(e=>e.category===category).slice(random, random+6).map((current) => {
             
             return (
               <NavLink to={`/singleproduct/${current.id}`} key={current.id}>
@@ -74,8 +79,9 @@ const FeatureProducts = () => {
 
 const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.bg};
-  padding: 2.5rem 0;
-  margin: 6rem 0 8rem;
+
+  margin:0 0 8rem;
+  height:70vh;
 
   carousel{}
   .intro-data {
@@ -86,7 +92,7 @@ const Wrapper = styled.section`
   .heading {
     font-size: 3.8rem;
     font-weight: 600;
-    margin-bottom: 6rem;
+    margin-bottom: 4rem;
     text-transform: capitalize;
   }
 
@@ -166,18 +172,26 @@ const Wrapper = styled.section`
   
   }
   @media only screen and (max-width:${({theme})=>theme.media.mobile}){
+    padding: 2.5rem 0 0;
+    height:auto;
+    margin: 4rem 0;
     .card{
-      width: 90vw;
+      width: 80vw;
+      margin-left:2rem;
     }
   }
 
   @media only screen and (min-width:540px) and (max-width:${({theme})=>theme.media.tab}){
+    padding: 2.5rem 0 0;
+    height:auto;
+    margin: 4rem 0;
     .intro-data{
       font-size:2rem;
       font-weight:bold;
     }
     .card{
-      width: 40.5vw;
+      width: 40vw;
+      margin-left:2rem;
     }
   }
 
@@ -187,4 +201,4 @@ const Wrapper = styled.section`
   
 `;
 
-export default FeatureProducts;
+export default SimiliarProducts;

@@ -96,7 +96,7 @@ const GridView = ({products}) => {
       .card {
         background-color: ${({ theme }) => theme.colors.bg};
         border-radius: 1rem;
-    
+        width:20vw;
         .card-data {
           padding: 0 1rem;
         }

@@ -9,6 +9,7 @@ import MyImage from "./MyImage";
 import Stars from "./Styles/Stars";
 import AddToCart from "./Styles/AddToCart";
 import axios from "axios";
+import SimiliarProducts from "./SimiliarProducts";
 
 const Api = "https://ecommerceserver-tn9j.onrender.com/api/products";
 const SingleProduct = () => {
@@ -22,10 +23,13 @@ const SingleProduct = () => {
         .catch(err=>console.log(err))
   }, [id]);
 
+  
+
   if (isSingleProductLoading) {
     return <div>......SINGLE LOADING</div>;
   }
   return (
+    <>
     <Wrapper>
       {data &&
         data.map((e) => {
@@ -90,10 +94,13 @@ const SingleProduct = () => {
                   </div>
                 </div>
               </div>
+              <SimiliarProducts category = {e.category}/>
             </div>
           );
         })}
+
     </Wrapper>
+</>
   );
 };
 const Wrapper = styled.section`
