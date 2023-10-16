@@ -81,7 +81,7 @@ const Wrapper = styled.section`
   background-color: ${({ theme }) => theme.colors.bg};
 
   margin:0 0 8rem;
-  height:70vh;
+  height:auto;
 
   carousel{}
   .intro-data {
