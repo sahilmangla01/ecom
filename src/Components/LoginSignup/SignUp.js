@@ -1,8 +1,10 @@
 import React,{useState} from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
+
 import styled from 'styled-components'
+import { ToastContainer ,toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 const registerInput ={
     firstName:"",
     lastName:"",
@@ -10,7 +12,7 @@ const registerInput ={
     password:""
   }
 const SignUp = () => {
-    let navi = useNavigate()
+    
     const [data , setData]= useState(registerInput)
     
   
@@ -28,7 +30,7 @@ const SignUp = () => {
       setData(registerInput)
       
       axios.post('https://ecommerceserver-tn9j.onrender.com/api/register',data)
-      .then((res)=>console.log(res.data),navi("/login"))
+      .then((res)=>console.log(res.data),toast('Registered Successfully'))
       .catch(err => console.log(err))
     }
   
@@ -69,6 +71,7 @@ const SignUp = () => {
   
   
         </form>
+        <ToastContainer/>
         </Wrapper>
  
       

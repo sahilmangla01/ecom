@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { ToastContainer ,toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const loginData ={
@@ -35,7 +36,11 @@ const Login = () => {
         localStorage.setItem("token",res.data.token)
         localStorage.setItem("login",true)
         localStorage.setItem("user",res.data.user.firstName)
+        toast("Login Sucessfully")
         navi("/")
+      }
+      else{
+        toast("Wrong Password")
       }
         console.log(res.data)
     })
@@ -78,7 +83,7 @@ const Login = () => {
   
       </form>
       
-
+        <ToastContainer/>
       </Wrapper>
   
     )
