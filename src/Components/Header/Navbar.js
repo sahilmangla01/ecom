@@ -6,10 +6,14 @@ import { CgMenu, CgClose } from "react-icons/cg";
 import { CgProfile } from "react-icons/cg";
 import { Button } from "../Styles/Button";
 import axios from "axios";
+import DropDown from "../Styles/DropDown";
 
 const Navbar = () => {
   const [cart, setCart] = useState([]);
   const [togle, setTogle] = useState(false);
+  const [togle2, setTogle2] = useState(false);
+  const [togle3, setTogle3] = useState(false);
+  const [togle4, setTogle4] = useState(false);
   let log = localStorage.getItem("login");
   let name = localStorage.getItem("user");
 
@@ -37,7 +41,7 @@ const Navbar = () => {
       .then((res) => setCart(res.data.cart))
       .catch((err) => console.log(err));
     }
-  },[login]);
+  });
 
   return (
     <Nav>
@@ -61,32 +65,23 @@ const Navbar = () => {
               Store
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              className="navbar-link"
-              to="/mobile"
-              onClick={() => setTogle(false)}
-            >
-              Mobiles
-            </NavLink>
+          <li onMouseEnter={()=>setTogle2(true)} onMouseLeave={()=>setTogle2(false)} className="navbar-link">
+           
+              <NavLink className="navbar-link" to='/mobile'>MOBILE</NavLink> <DropDown onMouseOver={(()=>setTogle2(true))} item={["oppo", 'apple','oneplus','samsung']}  togle2={togle2} togle={setTogle}/>
+              
+           
           </li>
-          <li>
-            <NavLink
-              className="navbar-link"
-              to="/laptop"
-              onClick={() => setTogle(false)}
-            >
-              Laptop
-            </NavLink>
+          <li onMouseEnter={()=>setTogle3(true)} onMouseLeave={()=>setTogle3(false)} className="navbar-link">
+           
+          <NavLink className="navbar-link" to='/laptop'>LAPTOP</NavLink>  <DropDown onMouseOver={(()=>setTogle3(true))} item={["msi", 'mackbook','hp','asus']} togle={setTogle}  togle2={togle3}/>
+              
+           
           </li>
-          <li>
-            <NavLink
-              className="navbar-link"
-              to="/accessories"
-              onClick={() => setTogle(false)}
-            >
-              Accessories
-            </NavLink>
+          <li onMouseEnter={()=>setTogle4(true)} onMouseLeave={()=>setTogle4(false)} className="navbar-link">
+           
+          <NavLink className="navbar-link" to='/accessories'>ACCESSORIES</NavLink> <DropDown onMouseOver={(()=>setTogle4(true))} item={["watch", 'buds','camera','speaker']} togle={setTogle} togle2={togle4}/>
+           
+         
           </li>
 
           <li>
@@ -165,6 +160,16 @@ const Nav = styled.nav`
     box-shadow:1rem 1rem 2rem ${({theme})=>theme.colors.help};
     
 }
+.btn2{
+  font-size:2rem;
+  border:transparent;
+  font-weight:bold;
+  transition: color 0.3s linear;
+
+}
+.btn2:hover, btn:active {
+  color: ${({ theme }) => theme.colors.help};
+}
 
 .dropDown{
     position:absolute;
@@ -208,6 +213,8 @@ const Nav = styled.nav`
     }
   }
   .navbar-link {
+    font-size:2rem;
+    font-weight:bold;
     &:link,
     &:visited {
       display: inline-block;

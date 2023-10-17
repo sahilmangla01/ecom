@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 
-const login = localStorage.getItem('login')
+const token = localStorage.getItem('token')
 
 const AddToCart = ({stock , id, price}) => {
 
@@ -16,8 +16,8 @@ const AddToCart = ({stock , id, price}) => {
 
  
   const addToCart = ()=>{
-   if(login){
-    Navi('/cart')
+   if(token){
+   
     const token=localStorage.getItem("token")
     const token1=window.atob(token.split(".")[1])
     const jsonString = `${token1}`;
@@ -40,7 +40,9 @@ const AddToCart = ({stock , id, price}) => {
     <Wrapper className="cart-button">
    
 
-    <Button onClick={addToCart}>Add To Cart</Button>
+    <Button style={{width:"30rem"}} onClick={addToCart}>Add To Cart</Button>
+    <br/><br/>
+    <Button style={{width:"30rem"}} onClick={()=> Navi('/cart')}>Buy Now</Button>
     <ToastContainer />
     
   </Wrapper>

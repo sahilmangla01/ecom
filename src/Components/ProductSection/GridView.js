@@ -1,14 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import FormatPrice from '../FormatPrice/FormatPrice';
+import { Button } from '../Styles/Button';
 
 const GridView = ({products}) => {
+  const [page, setPage]= useState(0)
+  const [npage, setNPage]= useState(1)
+
+  const previousPage = ()=>{
+      if(npage>1){
+        setPage(page-6);
+        setNPage(npage-1)
+      }
+  } 
+  const nextPage = ()=>{
+    if(npage<products.length/6){
+      setPage(page+6);
+      setNPage(npage+1)
+    }
+
+  }
   
     return (
         <Wrapper className="section">
           <div className="contain grid grid-three">
-            {products.map((current) => {
+            {products.slice(page,page+6).map((current) => {
               return (
                 <NavLink to={`/singleproduct/${current.id}` } key={current.id}>
                 <div className="card">
@@ -29,13 +46,31 @@ const GridView = ({products}) => {
               </NavLink>
               )
             })}
+          
+            <Button className='button' onClick={previousPage}>Previous</Button>
+            <div className='number'>{npage} Out of {products.length/6}</div>
+            <Button className='button' onClick={nextPage}>Next</Button>
           </div>
+          
+
         </Wrapper>
       );
     };
     
     const Wrapper = styled.section`
       padding: 9rem 0;
+
+      
+        .button{
+          margin :0 auto;
+          width:10vw;
+        }
+       
+        .number{
+          text-align:center;
+          font-size:3rem;
+        }
+      
     
       .contain {
         width: 60vw;
@@ -50,7 +85,7 @@ const GridView = ({products}) => {
       }
     
       figure {
-        width: auto;
+        
         display: flex;
         justify-content: center;
         align-items: center;
@@ -146,8 +181,17 @@ const GridView = ({products}) => {
       }
      @media only screen and (max-width:${({theme})=>theme.media.mobile}){
       padding:4rem 0;
+      .number{
+        display:none;
+      }
+      .button{
+        width:60vw;
+      }
       .contain{
         width:90vw;
+      }
+      .card{
+        width:auto;
       }
       .grid-three{
         grid-template-columns:1fr;
@@ -155,9 +199,18 @@ const GridView = ({products}) => {
      }
 
      @media only screen and (min-width:541px) and (max-width:${({theme})=>theme.media.tab}){
-      padding:5rem 0; 
+      padding:5rem 0;
+      .button{
+        width:20vw
+      } 
+      .number{
+        display:none;
+      }
       .contain{
         width:90vw;
+      }
+      .card{
+        width:auto;
       }
       .grid-three{
         grid-template-columns:repeat(2,1fr);

@@ -91,6 +91,7 @@ const SingleProduct = () => {
                     </div>
                     <hr />
                       {e.stock > 0 && <AddToCart stock={e.stock} id={e._id} price={e.price} />}
+                      
                   </div>
                 </div>
               </div>

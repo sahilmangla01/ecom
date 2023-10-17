@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import FormatPrice from '../FormatPrice/FormatPrice';
@@ -6,11 +6,34 @@ import {Button} from "../Styles/Button"
 
 
 const ListView = ({products}) => {
+  const [page, setPage]= useState(0)
+  const [npage, setNPage]= useState(1)
+  const [togle , setTogle]= useState(true)
+
+  const previousPage = ()=>{
+      if(npage>1){
+        setPage(page-6);
+        setNPage(npage-1)
+      }
+      if(npage === 2){
+        setTogle(true)
+      }
+  } 
+  const nextPage = ()=>{
+    if(npage<products.length/6){
+      setPage(page+6);
+      setNPage(npage+1)
+    }
+    if(npage+1 === products.length/6){
+      setTogle(false)
+    }
+
+  }
   
     return (
         <Wrapper className="section">
           <div className="container grid">
-            {products.map((curElem) => {
+            {products.slice(0, page+6).map((curElem) => {
               const { id, name, image, price, description } = curElem;
               return (
                 <div className="card grid grid-two-column" key={curElem.id}>
@@ -32,16 +55,32 @@ const ListView = ({products}) => {
                 </div>
               );
             })}
+            <div className='place'>
+          {/* <Button className='button' onClick={previousPage}>Previous</Button> */}
+          
+            {togle ?<div className='button' onClick={nextPage}>Load More...</div>:<div className='button' onClick={previousPage}>Show Less...</div>}
+            {/* {!togle?<div className='button' onClick={previousPage}>Show Less...</div>:""} */}
+            
+            </div>
           </div>
+            
         </Wrapper>
       );
     };
     
     const Wrapper = styled.section`
       padding: 9rem 0;
-    
+      
       .container {
         max-width: 80rem;
+      }
+      .place{
+        font-size:3rem;
+        text-align:center;
+
+      }
+      .button:hover{
+        color:${({theme})=>theme.colors.help}
       }
     
       .grid {

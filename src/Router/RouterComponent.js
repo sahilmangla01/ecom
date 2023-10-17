@@ -11,6 +11,8 @@ import Accessories from '../Components/Accessories'
 import SubCategoryContent from '../SubCategoryContent'
 import SignUp from '../Components/LoginSignup/SignUp'
 import Login from '../Components/LoginSignup/Login'
+import About from '../Components/About'
+import Contact from '../Components/Contact'
 const RouterComponent = () => {
   return (
     
@@ -25,6 +27,8 @@ const RouterComponent = () => {
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/register' element={<SignUp/>}/>
             <Route path='/login' element={<Login/>}/>
+            <Route path='/about' element={<About/>}/>
+            <Route path='/contact' element={<Contact/>}/>
             <Route path='*' element ={<Error/>}/>
 
         </Routes>

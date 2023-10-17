@@ -7,7 +7,7 @@ const ProductList = ({products , gridView}) => {
    
     
    if(gridView === true){
-    return <GridView products = {products}/>
+    return <GridView products = {products} />
    }
    if(gridView === false){
     return <ListView products = {products}/>

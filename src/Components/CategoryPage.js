@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import Sort from './ProductSection/Sort';
 import { AppContext } from '../Context/ProductsContext';
 import ProductList from './ProductSection/ProductList';
-import { NavLink } from 'react-router-dom';
+
 import axios from 'axios';
 
 
@@ -18,14 +18,7 @@ const CategoryPage = ({urlCategory }) => {
     const {  isLoading ,gridView } =
     useContext(AppContext);
     
-    const getUniqueData = (data, attr) => {
-      let newVal = data.map((curElem) => {
-        return curElem[attr];
-      });
-      newVal = [...new Set(newVal)]
-      return newVal
-    }
-    const companyData = getUniqueData(data, "company");
+   
   
       useEffect(() => {
         axios.get(`${Api}/${urlCategory}`)
@@ -47,23 +40,7 @@ const CategoryPage = ({urlCategory }) => {
           <Sort products={data} />
         </div>
 
-        <div className='filter'> 
-        {companyData.map((curElem, index) => {
-            return (
-              <NavLink to={`/category/${curElem}`} state={urlCategory}  key={index}>
-              <button
-               
-                type="button"
-                name="category"
-                value={curElem}
-                
-                >
-                {curElem}
-              </button>
-              </NavLink>
-            );
-          })}
-        </div>
+       
 
         <div className="main-product">
           <ProductList products = {data} gridView={gridView}/>
