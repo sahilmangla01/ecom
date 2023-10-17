@@ -38,12 +38,12 @@ const Navbar = () => {
     const userId = obj._id;
     axios
       .post("https://ecommerceserver-tn9j.onrender.com/api/displayCart", { userId: userId })
-      .then((res) => setCart(res.data.cart))
+      .then((res) => setCart(res.data.cart.length))
       .catch((err) => console.log(err));
     }
   });
 
-  let length = cart.length
+  
   return (
     <Nav>
       <div className={togle ? "navbar active " : "navbar"}>
@@ -124,7 +124,7 @@ const Navbar = () => {
               onClick={() => setTogle(false)}
             >
               <FiShoppingCart className="cart-link" />
-              <span className="cart-total">{length}</span>
+              <span className="cart-total">{cart}</span>
             </NavLink>
           </li>
         </ul>
