@@ -44,7 +44,7 @@ const Navbar = () => {
     }
   });
 
-  let length = cart.length;
+  
  
   
   return (
@@ -127,7 +127,7 @@ const Navbar = () => {
               onClick={() => setTogle(false)}
             >
               <FiShoppingCart className="cart-link" />
-              <span className="cart-total">{length}</span>
+              <span className="cart-total">{(cart || []).length}</span>
             </NavLink>
           </li>
         </ul>
