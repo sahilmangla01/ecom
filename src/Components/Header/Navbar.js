@@ -10,6 +10,7 @@ import DropDown from "../Styles/DropDown";
 
 const Navbar = () => {
   const [cart, setCart] = useState([]);
+  
   const [togle, setTogle] = useState(false);
   const [togle2, setTogle2] = useState(false);
   const [togle3, setTogle3] = useState(false);
@@ -28,9 +29,9 @@ const Navbar = () => {
     navi("/")
   };
 
- const login = localStorage.getItem('login')
+ const token = localStorage.getItem('token')
   useEffect(() => {
-    if(login){
+    if(token){
       const token = localStorage.getItem("token");
     const token1 = window.atob(token.split(".")[1]);
     const jsonString = `${token1}`;
@@ -44,6 +45,7 @@ const Navbar = () => {
   });
 
   let length = cart.length;
+ 
   
   return (
     <Nav>
