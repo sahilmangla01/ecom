@@ -12,8 +12,9 @@ import "./cart.css"
 
 const Cart = () => {
   
+  const {isLoading} = useContext(AppContext)
   const [cart, setCart] = useState([]);
-  const { products } = useContext(AppContext);
+  // const { products } = useContext(AppContext);
  const[pid , setPid]= useState()
  
 
@@ -34,7 +35,7 @@ let login = localStorage.getItem('login')
 
         axios
       .post("https://ecommerceserver-tn9j.onrender.com/api/displayCart", { userId: userId })
-      .then((res) => setCart(res.data.cart))
+      .then((res) => setCart(res.data.user.cart))
       .catch((err) => console.log(err));
     }
       });
@@ -80,11 +81,12 @@ let login = localStorage.getItem('login')
 
 
 
-  const map = cart && cart.map((item) => item.productId);
+  // const map = cart && cart.map((item) => item.productId);
   const quantity = cart && cart.map((item) => item.quantity);
+  console.log(quantity);
   
   
-  const price = cart && cart.map((item) => item.price);
+  const price = cart && cart.map((item) => item.productId.price);
 
   // console.log(quantity);
   // console.log(price);
@@ -116,7 +118,7 @@ let totalAmount = amount+4000
       <div>Cart is Empty</div>
     <img src="https://www.ipharmascience.com/assets/img/webimg/emptycart.png" alt="empty"/>
     </div>
-    :<Wrapper>
+    :!isLoading?<Wrapper>
 
     
      
@@ -125,8 +127,7 @@ let totalAmount = amount+4000
 
       <div className="cart">Cart</div>
       
-      {products
-        .filter((item) => map.includes(item._id))
+      {cart && cart
         .map((e, index) => {
 
 
@@ -134,27 +135,27 @@ let totalAmount = amount+4000
       
             <div key={index}>
               <div className="main">
-              <div className="remove" onClick={removeProduct} onMouseOver={()=>setPid(e._id)}><AiOutlineCloseCircle className="icon"/></div>
+              <div className="remove" onClick={removeProduct} onMouseOver={()=>setPid(e.productId._id)}><AiOutlineCloseCircle className="icon"/></div>
                 <div className="product">
-                  <img src={e.image[0].img} alt={e.name}  />
+                  <img src={e.productId.image[0].img} alt={e.productId.name}  />
                   
-                  <div className="name">{e.name}</div>
+                  <div className="name">{e.productId.name}</div>
                 </div>
 
 
                   
                 <div className="amount">
         <div className="amount-toggle">
-          <button onClick={setDecrease} onMouseOver={()=>setPid(e._id)}>
+          <button onClick={setDecrease} onMouseOver={()=>setPid(e.productId._id)}>
             <FaMinus />
           </button>
           <div className="amount-style">{quantity[index]}</div>
-          <button onClick={setIncrease} onMouseOver={()=>setPid(e._id)}>
+          <button onClick={setIncrease} onMouseOver={()=>setPid(e.productId._id)}>
             <FaPlus />
           </button>
         </div>
         <div className="price ">
-                    <FormatPrice price={price[index]} value={quantity[index]}/>
+                    <FormatPrice price={e.productId.price} value={quantity[index]}/>
                   </div>
         </div>
                
@@ -182,10 +183,10 @@ let totalAmount = amount+4000
             <h3><FormatPrice price={totalAmount} value={1}/></h3>
           </div>
 
-          <Button>Check Out</Button>
+          <Button>Place Order</Button>
         </div>
           
-    </Wrapper>
+    </Wrapper>:<div>Loading</div>
   }
   </>
   );

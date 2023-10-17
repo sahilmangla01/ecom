@@ -39,7 +39,7 @@ const Navbar = () => {
     const userId = obj._id;
     axios
       .post("https://ecommerceserver-tn9j.onrender.com/api/displayCart", { userId: userId })
-      .then((res) => setCart(res.data.cart))
+      .then((res) => setCart(res.data.user.cart))
       .catch((err) => console.log(err));
     }
   });

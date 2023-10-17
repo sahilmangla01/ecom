@@ -4,6 +4,8 @@ import RouterComponent from './Router/RouterComponent';
 import { GlobalStyle } from './GlobalStyle/GlobalStyle';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
+import { PayPalScriptProvider} from "@paypal/react-paypal-js";
+import PayPalApis from './PaypalApis';
 
 
 function App() {
@@ -19,14 +21,23 @@ function App() {
       tab: "990px"
     }
   }
+
+  const initialOptions = {
+    clientId: "AeVQMWRo280pb6qUcUyDzvreC9jfBk-ucSgI_6GTXX_KixPk3aTRtTP7s6OHo-SqxeyVLpqKBPO0iMf1",
+    currency: "USD",
+    intent: "capture",
+};
   return (
-    <ThemeProvider theme={theme}>  
+    <PayPalScriptProvider options={initialOptions}>
+      <ThemeProvider theme={theme}>  
           <GlobalStyle/>
           <Header/>
           <RouterComponent/>
+          <PayPalApis/>
           <Footer/>
           
      </ThemeProvider>
+    </PayPalScriptProvider>
 
   );
 }
