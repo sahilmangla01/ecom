@@ -6,7 +6,8 @@ import FormatPrice from "./FormatPrice/FormatPrice";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import "./cart.css"
-import PayPalApis from "../PaypalApis";
+import RazorPay from "./RazorPay";
+
 
 
 const Cart = () => {
@@ -117,6 +118,7 @@ let totalAmount = amount+4000
 
 
 
+
   
 
 
@@ -193,8 +195,12 @@ let totalAmount = amount+4000
             <h3><FormatPrice price={totalAmount} value={1}/></h3>
           </div>
 
+          <div className="buttons">
           <Button onClick={PlaceOrder}>Place Order</Button>
-          <PayPalApis/>
+          <RazorPay  amount={totalAmount}/>
+          </div>
+          
+          
         </div>
           
     </Wrapper>
@@ -204,6 +210,12 @@ let totalAmount = amount+4000
 };
 
 const Wrapper = styled.section`
+
+.buttons{
+  button{
+    margin:0 .25rem;
+  }
+}
 
 .remove{
   
