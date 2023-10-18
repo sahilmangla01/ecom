@@ -121,7 +121,7 @@ justify-content:center;
     border: transparent;
     background-color: transparent;
     border-bottom: 2px solid lightgray;
-    font-size: 1.5em;
+    font-size: 3em;
     z-index: 1;
     outline: none;
 }
@@ -153,7 +153,7 @@ justify-content:center;
     height: 8vh;
     width: 15vw;
     margin: auto;
-    font-size: 2rem;
+    font-size: 2.5rem;
     color:#614BC3;
     padding: 5px 0;
     background-color: white;
@@ -192,6 +192,7 @@ justify-content:center;
     .signup__display button{
         height: 10vh;
         width: 50vw;
+        font-size:3rem; 
     }
     .loginPage{
        right: 20px;
@@ -217,17 +218,24 @@ justify-content:center;
     }
     .signup__display span{
         left: 8vw;
-        font-size:3rem;
+        font-size:3.5rem;
     }
-    .signup__display button{
-        height: 10vh;
-        width: 50vw;
-    }
+   
     .loginPage{
         right: 20px;
     }
     .signup__display input{
         width: 50vw;
+        font-size:4rem;
+    }
+    .signup__display input:focus + span , .signup__display input:not(:placeholder-shown)+span{
+        font-size:3rem; 
+    }
+    .signup__display button{
+        height: 10vh;
+        width: 50vw;
+        font-size:4.5rem;
+        border-radius:10rem;
     }
 }
 

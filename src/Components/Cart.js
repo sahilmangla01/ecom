@@ -1,20 +1,18 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
-import { AppContext } from "../Context/ProductsContext";
+import React, {  useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button } from "./Styles/Button";
 import FormatPrice from "./FormatPrice/FormatPrice";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import "./cart.css"
-
+import PayPalApis from "../PaypalApis";
 
 
 const Cart = () => {
-  
-  const {isLoading} = useContext(AppContext)
+
   const [cart, setCart] = useState([]);
-  // const { products } = useContext(AppContext);
+  const [load, setLoad] = useState(false);
  const[pid , setPid]= useState()
  
 
@@ -79,11 +77,23 @@ let login = localStorage.getItem('login')
     .catch((err) => console.log(err));
   }
 
+  const PlaceOrder = ()=>{
+    const token = localStorage.getItem("token");
+    const token1 = window.atob(token.split(".")[1]);
+    const jsonString = `${token1}`;
+    const obj = JSON.parse(jsonString);
+    const userId = obj._id;
+   
+    axios.post("https://ecommerceserver-tn9j.onrender.com/api/place",{userId: userId })
+    .then((res) => console.log(res.data))
+    .catch((err) => console.log(err));
+  }
+
 
 
   // const map = cart && cart.map((item) => item.productId);
   const quantity = cart && cart.map((item) => item.quantity);
-  console.log(quantity);
+  
   
   
   const price = cart && cart.map((item) => item.productId.price);
@@ -115,10 +125,10 @@ let totalAmount = amount+4000
     <>
 
     {(cart.length===0)? <div className="empty">
-      <div>Cart is Empty</div>
+    <div>Cart is Empty</div>
     <img src="https://www.ipharmascience.com/assets/img/webimg/emptycart.png" alt="empty"/>
     </div>
-    :!isLoading?<Wrapper>
+    :<Wrapper>
 
     
      
@@ -183,10 +193,11 @@ let totalAmount = amount+4000
             <h3><FormatPrice price={totalAmount} value={1}/></h3>
           </div>
 
-          <Button>Place Order</Button>
+          <Button onClick={PlaceOrder}>Place Order</Button>
+          <PayPalApis/>
         </div>
           
-    </Wrapper>:<div>Loading</div>
+    </Wrapper>
   }
   </>
   );

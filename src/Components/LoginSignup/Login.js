@@ -133,7 +133,7 @@ justify-content:center;
   border: transparent;
   background-color: transparent;
   border-bottom: 2px solid lightgray;
-  font-size: 1.5em;
+  font-size: 3em;
   z-index: 1;
   
 }
@@ -162,7 +162,7 @@ justify-content:center;
   height: 8vh;
   width: 15vw;
   margin: auto;
-  font-size: 1.5em;
+  font-size: 3rem;
   color: gray;
   padding: 5px 0;
   background-color: white;
@@ -234,9 +234,15 @@ justify-content:center;
       height: 20vh;
       
   }
+  .login__display input{
+    font-size:3.4rem;
+  }
   .login__display span{
       left: 8vw;
-      font-size:3rem;
+      font-size:3.4rem;
+  }
+  .login__display input:focus ~ span , .login__display input:not(:placeholder-shown) + span{
+    font-size:3rem;
   }
   .login__display button{
       height: 10vh;
@@ -248,6 +254,13 @@ justify-content:center;
   }
   .login__display input{
       width: 50vw;
+  }
+  .login__display button{
+    font-size:4.5rem;
+    border-radius:10rem;
+  }
+  .registerPage{
+    font-size:4rem;
   }
 }
 

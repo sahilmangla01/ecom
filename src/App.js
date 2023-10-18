@@ -5,7 +5,7 @@ import { GlobalStyle } from './GlobalStyle/GlobalStyle';
 import Header from './Components/Header/Header';
 import Footer from './Components/Footer/Footer';
 import { PayPalScriptProvider} from "@paypal/react-paypal-js";
-import PayPalApis from './PaypalApis';
+
 
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
           <GlobalStyle/>
           <Header/>
           <RouterComponent/>
-          <PayPalApis/>
+          
           <Footer/>
           
      </ThemeProvider>
