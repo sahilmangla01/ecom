@@ -12,7 +12,7 @@ import PayPalApis from "../PaypalApis";
 const Cart = () => {
 
   const [cart, setCart] = useState([]);
-  const [load, setLoad] = useState(false);
+  
  const[pid , setPid]= useState()
  
 
