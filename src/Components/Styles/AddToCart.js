@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
 import {Button} from './Button'
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer ,toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
@@ -34,15 +33,14 @@ const AddToCart = ({stock , id, price}) => {
   
 
 
-    const Navi = useNavigate();
+    
    
   return (
     <Wrapper className="cart-button">
    
 
     <Button style={{width:"30rem"}} onClick={addToCart}>Add To Cart</Button>
-    <br/><br/>
-    <Button style={{width:"30rem"}} onClick={()=> Navi('/cart')}>Buy Now</Button>
+    
     <ToastContainer />
     
   </Wrapper>
