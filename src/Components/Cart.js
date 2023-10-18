@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {  useEffect, useState } from "react";
+import React, {  useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Button } from "./Styles/Button";
 import FormatPrice from "./FormatPrice/FormatPrice";
@@ -7,11 +7,12 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { FaMinus, FaPlus } from "react-icons/fa";
 import "./cart.css"
 import RazorPay from "./RazorPay";
+import { AppContext } from "../Context/ProductsContext";
 
 
 
 const Cart = () => {
-
+const {isLoading} = useContext(AppContext)
   const [cart, setCart] = useState([]);
   
  const[pid , setPid]= useState()
@@ -120,7 +121,9 @@ let totalAmount = amount+4000
 
 
   
-
+  if(isLoading){
+    return <div>Loading</div>
+  }
 
 
   return (
