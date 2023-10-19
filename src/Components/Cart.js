@@ -161,11 +161,11 @@ let totalAmount = amount+4000
                   
                 <div className="amount">
         <div className="amount-toggle">
-          <button onClick={setDecrease} onMouseOver={()=>setPid(e.productId._id)}>
+          <button onClick={setDecrease} onTouchStart={()=>setPid(e.productId._id)} onMouseOver={()=>setPid(e.productId._id)}>
             <FaMinus />
           </button>
           <div className="amount-style">{quantity[index]}</div>
-          <button onClick={setIncrease} onMouseOver={()=>setPid(e.productId._id)}>
+          <button onClick={setIncrease} onTouchStart={()=>setPid(e.productId._id)} onMouseOver={()=>setPid(e.productId._id)}>
             <FaPlus />
           </button>
         </div>
